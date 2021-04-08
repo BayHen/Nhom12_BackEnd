@@ -16,4 +16,7 @@ class WelcomeController extends Controller
     public function login(){
         return view('login');
     }
+    public function photos(){
+        return view('photos');
+    }
 }   
