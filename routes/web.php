@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+// use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -12,12 +12,17 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+//Auth::routes();
+Route::get('/', 'HomeController@index');
 
-Route::get('/', 'WelcomeController@index');
-// Route::get('/products', 'WelcomeController@index');
-Route::get('/products/{id?}', 'ProductsController@index');
-Route::get('/admin','WelcomeController@admin' )->middleware('checkpass');
-Route::get('/login','WelcomeController@login' );
-Route::get('/photos-action','WelcomeController@photos');
-Route::resource("photos", "PhotoController");
+Route::get('/product', 'ProductsController@index');
+Route::get('/product_detail', 'ProductsController@indexs');
+
+Route::get('/login', 'AuthController@login');
+Route::get('/logout', 'AuthController@signup');
+
+Route::get('/card', 'PurchaseController@card');
+Route::get('/checkout', 'PurchaseController@checkout');
+// Route::middleware('auth:api')->get('/user', 'UserController@AuthRouteAPI');
+
 
