@@ -15,11 +15,12 @@ use Illuminate\Support\Facades\Route;
 //Auth::routes();
 Route::get('/', 'HomeController@index');
 
-Route::get('/product', 'ProductsController@index');
-Route::get('/product_detail', 'ProductsController@indexs');
+Route::resource('products','ProductsController')->only(['index', 'show']);
 
-Route::get('/login', 'AuthController@login');
-Route::get('/logout', 'AuthController@signup');
+
+
+Route::get('/login', 'AuthController@signin');
+Route::get('/signup', 'AuthController@signup');
 
 Route::get('/card', 'PurchaseController@card');
 Route::get('/checkout', 'PurchaseController@checkout');
