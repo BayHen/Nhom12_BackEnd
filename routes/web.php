@@ -17,10 +17,33 @@ Route::get('/', 'HomeController@index');
 
 Route::resource('products','ProductsController')->only(['index', 'show']);
 
+Route::middleware(['auth-permission'])->group(function () {
+    Route::get('log-in', 'AuthController@signin');
+    Route::post('log-in', 'AuthController@signin_post');
+    Route::get('sign-up', 'AuthController@signup');
+    Route::post('sign-up', 'AuthController@signup_post');
+});
+
+Route::middleware(['user-permission'])->group(function () {
+    Route::prefix('be-admin')->group(function () {
+        Route::get('', 'AdminController@index');
+        Route::resource('products', 'AdminProductsController');
+        Route::resource('users', 'AdminUsersController');
+        Route::resource('taxonomies', 'AdminTaxonomiesController');
+        Route::resource('orders', 'AdminOrdersController')
+            ->only(['index', 'destroy', 'update']);
+        Route::resource('comments', 'AdminCommentsController')
+            ->only(['index', 'destroy']);
+    });
+});
+
+// request not middleware
+Route::prefix('be-admin')->group(function () {
+    Route::resource('comments', 'AdminCommentsController')
+        ->only(['store']);
+});
 
 
-Route::get('/login', 'AuthController@signin');
-Route::get('/signup', 'AuthController@signup');
 
 Route::get('/card', 'PurchaseController@card');
 Route::get('/checkout', 'PurchaseController@checkout');

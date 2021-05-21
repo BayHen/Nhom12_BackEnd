@@ -18,7 +18,7 @@
                                     <ul id="navigation">
                                         <li><a href="{{ asset('/') }}">Home</a></li>
                                         <li><a href="{{ asset('/products') }}">Product</a></li>
-                                        <li><a href="{{ asset('/login') }}">Login</a>
+                                        <li><a href="{{ asset('/log-in') }}">Login</a>
                                         </li>
                                     </ul>
                                 </nav>
@@ -37,7 +37,7 @@
                                         </form>
                                     </li>
                                     <li>
-                                        <a href="{{ asset('/login') }}" class="account-btn" target="_blank">My Account</a>
+                                        <a href="{{ asset('/log-in') }}" class="account-btn" target="_blank">My Account</a>
                                     </li>
                                     <li>
                                         <div class="card-stor">

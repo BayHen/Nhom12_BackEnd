@@ -6,14 +6,15 @@
         <div class="row justify-content-center">
             <div class="col-xl-7 col-lg-8">
                 <div class="login-form">
+
                     <div class="login-heading">
                         <span>Login</span>
                         <p>Enter Login details to get access</p>
                     </div>
-                    <div class="input-box">
+                    <div class="input-box" method="POST">
                         <div class="single-input-fields">
-                            <label>Username or Email Address</label>
-                            <input type="text" placeholder="Username / Email address">
+                            <label>Username</label>
+                            <input type="text" placeholder="Username">
                         </div>
                         <div class="single-input-fields">
                             <label>Password</label>
@@ -27,7 +28,7 @@
                     </div>
                     <div class="login-footer">
                         <p>Don’t have an account? <a href="{{asset('/signup')}}">Sign Up</a> here</p>
-                        <button class="submit-btn3">Login</button>
+                        <button type="submit" class="submit-btn3">Login</button>
                     </div>
                 </div>
             </div>
