@@ -17,18 +17,6 @@
                                     <input name="name" type="text" class="form-control" placeholder="Nhập tên..."
                                         value="{{ $product->product_name }}" required>
                                 </div>
-                                <div class="form-group">
-                                    <label class="form-label">Hãng Sản Xuất</label>
-                                    <select class="form-control" name="manufacturer" id="">
-                                        @foreach ($manufacturers as $manufacturer)
-                                            <option
-                                                {{ $product->manufacturer->manufacturer_id == $manufacturer->manufacturer_id ? 'selected' : '' }}
-                                                value="{{ $manufacturer->manufacturer_id }}">
-                                                {{ $manufacturer->manufacturer_name }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                </div>
                                 <div class="mb-4" style="height: 150px; overflow: auto">
                                     <label class="form-label">Loại Sản Phẩm</label>
                                     @foreach ($categories as $category)

@@ -17,6 +17,8 @@ Route::get('/', 'HomeController@index');
 
 Route::resource('products','ProductsController')->only(['index', 'show']);
 
+
+// middleware for authenticator
 Route::middleware(['auth-permission'])->group(function () {
     Route::get('log-in', 'AuthController@signin');
     Route::post('log-in', 'AuthController@signin_post');
@@ -24,6 +26,9 @@ Route::middleware(['auth-permission'])->group(function () {
     Route::post('sign-up', 'AuthController@signup_post');
 });
 
+Route::get('logout', 'AuthController@logout');
+
+// request admin with middleware
 Route::middleware(['user-permission'])->group(function () {
     Route::prefix('be-admin')->group(function () {
         Route::get('', 'AdminController@index');
@@ -42,11 +47,6 @@ Route::prefix('be-admin')->group(function () {
     Route::resource('comments', 'AdminCommentsController')
         ->only(['store']);
 });
-
-
-
-Route::get('/card', 'PurchaseController@card');
-Route::get('/checkout', 'PurchaseController@checkout');
 // Route::middleware('auth:api')->get('/user', 'UserController@AuthRouteAPI');
 
 

@@ -50,7 +50,6 @@ $title = $nameCategory;
                             @include('client.products.items', ['product' => $product])
                         @endforeach
                     </div>
-
                 </div>
             </div>
         </div>

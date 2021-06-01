@@ -37,7 +37,6 @@
                                     <th style="width:25%;"></th>
                                     <th style="width:10%;">Mã Hàng</th>
                                     <th style="width:25%">Tên Hàng</th>
-                                    <th style="width:10%">Hãng</th>
                                     <th style="width:25%">Giá</th>
                                     <th style="width:25%">Số Lượng</th>
                                     <th style="width:30%">Thời Gian</th>
@@ -53,12 +52,11 @@
                                 @foreach ($products as $product)
                                     <tr>
                                         <td><img style="width: 100%;"
-                                                src="{{ asset('assets/images/' . $product->product_image) }}" alt=""></td>
+                                                src="{{ asset('assets/img/gallery/' . $product->product_image) }}" alt=""></td>
                                         <td>{{ $product->product_id }}</td>
                                         <td><a
                                                 href="{{ asset('products/' . $product->product_id) }}">{{ $product->product_name }}</a>
                                         </td>
-                                        <td>{{ $product->manufacturer->manufacturer_name }}</td>
                                         <td>{{ number_format($product->product_price) }} VNĐ</td>
                                         <td>{{ $product->product_available }}</td>
                                         <td>{{ $product->created_at }}</td>

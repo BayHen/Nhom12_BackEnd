@@ -21,7 +21,6 @@
             @include('admin.common.footer')
         </div>
     </div>
-
     @include('admin.base.script')
 </body>
 

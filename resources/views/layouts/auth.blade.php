@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">   
 @include('auth.base.head', ['title' => $title ?? 'No Title'])
 
 <script>
@@ -9,7 +9,7 @@
         alert(msg);
     }
 </script>
- 
+
 <body>
     <div id="preloader-active">
         <div class="preloader d-flex align-items-center justify-content-center">

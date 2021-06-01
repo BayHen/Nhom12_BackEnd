@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Categorizable;
 use App\Category;
-use App\Manufacturer;
 use App\Product;
 use Illuminate\Http\Request;
 
@@ -41,10 +40,8 @@ class AdminProductsController extends Controller
 
     public function create()
     {
-        $manufacturers = Manufacturer::all();
         $categories = Category::all();
         return view('admin.pages.products.create', [
-            'manufacturers' => $manufacturers,
             'categories' => $categories,
         ]);
     }
@@ -52,27 +49,27 @@ class AdminProductsController extends Controller
     public function store(Request $request)
     {
         $name = request("name");
-        $manufacturer = request("manufacturer");
         $categories = request("categories");
         $description = request("description");
         $price = request("price");
         $available = request("available");
+        $feature = request("feature");
         $image = $request->file('image');
         $image && $image->move('assets/images', $image->getClientOriginalName());
 
         $product = new Product;
         $product->product_name = $name;
-        $product->manufacturer_id = $manufacturer;
         $product->product_description = $description;
         $product->product_price = $price;
         $product->product_available = $available;
+        $product->product_feature = $feature;
         $product->product_image = $image && $image->getClientOriginalName();
         $product->save();
         $product = $product->fresh();
 
         if ($categories)
             for ($i = 0; $i < count($categories); $i++) {
-                $categorizable = new Categorizable;
+                $categorizable = new Product();
                 $categorizable->category_id = $categories[$i];
                 $categorizable->product_id = $product->product_id;
                 $categorizable->save();
@@ -90,11 +87,9 @@ class AdminProductsController extends Controller
     public function edit($id)
     {
         $product = Product::where("product_id", $id)->get()[0];
-        $manufacturers = Manufacturer::all();
         $categories = Category::all();
         return view('admin.pages.products.edit', [
             'product' => $product,
-            'manufacturers' => $manufacturers,
             'categories' => $categories
         ]);
     }
@@ -102,28 +97,28 @@ class AdminProductsController extends Controller
     public function update(Request $request, $id)
     {
         $name = request("name");
-        $manufacturer = request("manufacturer");
         $categories = request("categories");
         $description = request("description");
         $price = request("price");
         $available = request("available");
+        $feature = request("feature");
         $image = $request->file('image');
         $image && $image->move('assets/images', $image->getClientOriginalName());
 
         $product = Product::find($id);
         $name && $product->product_name = $name;
-        $manufacturer && $product->manufacturer_id = $manufacturer;
         $description && $product->product_description = $description;
         $price && $product->product_price = $price;
+        $feature && $product->product_feature = $feature;
         $available && $product->product_available = $available;
         $image && $product->product_image =  $image->getClientOriginalName();
         $product->save();
 
-        Categorizable::where("product_id", $id)->delete();
+        Product::where("product_id", $id)->delete();
         // error_log(json_encode($categories));
         if ($categories)
             for ($i = 0; $i < count($categories); $i++) {
-                $categorizable = new Categorizable;
+                $categorizable = new Product();
                 $categorizable->category_id = $categories[$i];
                 $categorizable->product_id = $product->product_id;
                 $categorizable->save();
@@ -134,7 +129,6 @@ class AdminProductsController extends Controller
 
     public function destroy($id)
     {
-        Categorizable::where("product_id", $id)->delete();
         Product::where("product_id", $id)->delete();
         return redirect()->back()->with("alert", "Xóa thành công.");
     }

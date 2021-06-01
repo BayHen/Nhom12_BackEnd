@@ -3,16 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Category;
-use App\Manufacturer;
 use Illuminate\Http\Request;
 
 class AdminTaxonomiesController extends Controller
 {
     public function index()
     {
-        $manufacturers = Manufacturer::all();
-        var_dump($manufacturers[0]->manufacturer_name);
-
+        
         $categories = Category::all();
         var_dump($categories[0]->category_name);
 
@@ -21,10 +18,7 @@ class AdminTaxonomiesController extends Controller
 
     public function create()
     {
-        if(request()->query("type") == "manufacturer") {
-            // làm hãng sx trong này
-            return view('admin.pages.taxonomies.create-manufacturer');
-        }
+        
 
         if (request()->query("type") == "category") {
             // làm chuyen muc trong này
@@ -34,10 +28,7 @@ class AdminTaxonomiesController extends Controller
 
     public function store()
     {
-        if (request("type") == "manufacturer") {
-            // làm hãng sx trong này
-            return "tạo nhà sx";
-        }
+        
 
         if (request("type") == "category") {
             // làm chuyen muc trong này
@@ -52,10 +43,7 @@ class AdminTaxonomiesController extends Controller
 
     public function edit($id)
     {
-        if (request()->query("type") == "manufacturer") {
-            // làm hãng sx trong này
-            return view('admin.pages.taxonomies.edit-manufacturer');
-        }
+        
 
         if (request()->query("type") == "category") {
             // làm chuyen muc trong này
@@ -65,10 +53,7 @@ class AdminTaxonomiesController extends Controller
 
     public function update(Request $request, $id)
     {
-        if (request("type") == "manufacturer") {
-            // làm hãng sx trong này
-            return "cập nhật nhà sx";
-        }
+       
 
         if (request("type") == "category") {
             // làm chuyen muc trong này
@@ -78,10 +63,7 @@ class AdminTaxonomiesController extends Controller
 
     public function destroy($id)
     {
-        if (request("type") == "manufacturer") {
-            // làm hãng sx trong này
-            return "xóa nhà sx";
-        }
+        
 
         if (request("type") == "category") {
             // làm chuyen muc trong này

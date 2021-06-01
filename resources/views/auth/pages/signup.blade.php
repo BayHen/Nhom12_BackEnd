@@ -5,8 +5,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-xl-6 col-lg-8">
-                <div class="register-form text-center" method="POST">
-                    @csrf
+                <div class="register-form text-center">
                     <div class="register-heading">
                         <span>Sign Up</span>
                         <p>Create your account to get full access</p>

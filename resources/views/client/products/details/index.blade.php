@@ -26,7 +26,7 @@
                 <div class="product_slider_img">
                     <div id="vertical">
                         <div data-thumb="assets/img/gallery/product-details1.png">
-                            <img src="{{asset('assets/img/gallery/product-details1.png')}}" class="w-100">
+                            <img src="{{asset('assets/img/gallery/'.$product->product_image)}}" class="w-100">
                         </div>
                     </div>
                 </div>
@@ -34,12 +34,12 @@
             <div class="col-lg-5 offset-lg-1">
                 <div class="s_product_text">
                     <h3>{{ $product->product_name }}</h3>
-                    <h2>{{ $product->product_price }} VNĐ</h2>
+                    <h2>{{ number_format($product->product_price) }} VNĐ</h2>
                     <ul class="list">
 
-                        @foreach ($product->categories as $category)
-                        <li><a href="#">{{ $category->category_name }}</a></li>
-                        @endforeach
+                        
+                        <li><a href="#">{{ $product->categories->category_name }}</a></li>
+                       
                         <li>
                             <p><span>Số lượng còn lại:</span> {{ $product->product_available }} Trong Kho</p>
                         </li>

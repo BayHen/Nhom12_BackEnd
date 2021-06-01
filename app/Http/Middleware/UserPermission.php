@@ -16,7 +16,7 @@ class UserPermission
     public function handle($request, Closure $next)
     {
         $user = session(".config_user");
-        if (!$user) return redirect("/sign-in");
+        if (!$user) return redirect("/log-in");
         if ($user->user_permission != 9) return redirect("/");
         return $next($request);
     }

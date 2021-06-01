@@ -14,16 +14,6 @@
                                     <label class="form-label">Tên</label>
                                     <input name="name" type="text" class="form-control" placeholder="Nhập tên..." required>
                                 </div>
-                                <div class="form-group">
-                                    <label class="form-label">Hãng Sản Xuất</label>
-                                    <select class="form-control" name="manufacturer" id="">
-                                        @foreach ($manufacturers as $manufacturer)
-                                            <option value="{{ $manufacturer->manufacturer_id }}">
-                                                {{ $manufacturer->manufacturer_name }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                </div>
                                 <div class="mb-4" style="height: 150px; overflow: auto">
                                     <label class="form-label">Loại Sản Phẩm</label>
                                     @foreach ($categories as $category)
@@ -50,8 +40,12 @@
                                     <input name="available" type="number" class="form-control" value="0">
                                 </div>
                                 <div class="form-group">
+                                    <label class="form-label">Nổi bật</label>
+                                    <input name="feature" type="number" class="form-control" value="0">
+                                </div>
+                                <div class="form-group">
                                     <label class="form-label w-100">Hình ảnh</label>
-                                    <input type="file" name="image" accept="image/*">
+                                    <input type="file" name="image" accept="img/*">
                                     <small class="form-text text-muted">Chọn hình ảnh cho sản phẩm của bạn.</small>
                                 </div>
                                 <button type="submit" class="btn btn-primary">Tạo Mới</button>
