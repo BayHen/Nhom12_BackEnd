@@ -9,16 +9,12 @@ class AdminTaxonomiesController extends Controller
 {
     public function index()
     {
-        
-        $categories = Category::all();
-        var_dump($categories[0]->category_name);
-
+        // 
         return view('admin.pages.taxonomies.index');
     }
 
     public function create()
     {
-        
 
         if (request()->query("type") == "category") {
             // làm chuyen muc trong này
@@ -28,11 +24,15 @@ class AdminTaxonomiesController extends Controller
 
     public function store()
     {
-        
+        $name = request("name");
 
         if (request("type") == "category") {
             // làm chuyen muc trong này
-            return "tạo loại";
+            $category = new Category;
+            $category->category_name = $name;
+            $category->save();
+            return redirect("/be-admin/taxonomies")
+            ->with('alert', "Tạo nhà sản xuất thành công!");
         }
     }
     
@@ -43,31 +43,37 @@ class AdminTaxonomiesController extends Controller
 
     public function edit($id)
     {
-        
+
 
         if (request()->query("type") == "category") {
             // làm chuyen muc trong này
-            return view('admin.pages.taxonomies.edit-category');
+            $category = Category::where("category_id", $id)->get()[0];
+            return view('admin.pages.taxonomies.edit-category', [
+                'category' => $category,]);
         }
     }
 
     public function update(Request $request, $id)
     {
-       
+        $name = request("name");
 
         if (request("type") == "category") {
             // làm chuyen muc trong này
-            return "cập nhật loại";
+            $category = Category::find($id);
+            $name && $category->category_name = $name;
+            $category->save();
+            return redirect("/be-admin/taxonomies/" . $id . "/edit?type=category")
+            ->with("alert", "Cập nhật thành công.");
         }
     }
 
     public function destroy($id)
     {
-        
 
         if (request("type") == "category") {
             // làm chuyen muc trong này
-            return "xóa loại";
+            Category::where("category_id", $id)->delete();
+            return redirect()->back()->with("alert", "Xóa thành công.");
         }
     }
 }

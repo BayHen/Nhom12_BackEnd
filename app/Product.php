@@ -17,4 +17,9 @@ class Product extends Model
     {
         return $this->hasMany('App\Comment', 'comment_id');
     }
+
+    public function orders()
+    {
+        return $this->hasMany('App\OrderDetail', 'product_id');
+    }
 }

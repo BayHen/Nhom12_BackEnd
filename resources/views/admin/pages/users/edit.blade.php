@@ -8,22 +8,32 @@
                 <div class="col-12 col-6">
                     <div class="card px-5">
                         <div class="card-body">
-                            <form method="POST">
+                            <form method="POST" action="{{ asset('be-admin/users/' . $user->user_id) }}">
+                                @csrf
+                                {{ method_field('PUT') }}
                                 <div class="form-group">
                                     <label class="form-label">Username</label>
                                     <input name="username" type="text" class="form-control" placeholder="Nhập tên..."
-                                        required>
+                                        value="{{$user->user_username}}" disabled required>
                                 </div>
                                 <div class="form-group">
                                     <label class="form-label">Password</label>
-                                    <input name="pass" type="password" class="form-control" placeholder="Nhập mật khẩu..."
-                                        required>
+                                    <input name="password" type="password" class="form-control" placeholder="Nhập mật khẩu..."
+                                    value = "...">
                                 </div>
                                 <div class="form-group">
                                     <label class="form-label">Quyền Hạn</label>
                                     <select class="form-control" name="permission" id="" required>
-                                        <option value="1">Editor</option>
-                                        <option value="9">Admin</option>
+                                        <option value="1" 
+                                        @if($user->user_permission == '1')
+                                        selected
+                                        @endif
+                                        >Normal User</option>
+                                        <option value="9" 
+                                        @if($user->user_permission == '9')
+                                        selected 
+                                        @endif
+                                        >Administrator</option>
                                     </select>
                                 </div>
                                 <button type="submit" class="btn btn-primary">Sửa</button>

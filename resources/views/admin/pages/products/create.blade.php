@@ -14,17 +14,15 @@
                                     <label class="form-label">Tên</label>
                                     <input name="name" type="text" class="form-control" placeholder="Nhập tên..." required>
                                 </div>
-                                <div class="mb-4" style="height: 150px; overflow: auto">
+                                <div class="form-group">
                                     <label class="form-label">Loại Sản Phẩm</label>
-                                    @foreach ($categories as $category)
-                                        <div class="form-check my-2">
-                                            <label class="form-check-label">
-                                                <input type="checkbox" class="form-check-input" name="categories[]" id=""
-                                                    value="{{ $category->category_id }}">
+                                    <select class="form-control" name="category" id="">
+                                        @foreach ($categories as $category)
+                                            <option value="{{ $category->category_id }}">
                                                 {{ $category->category_name }}
-                                            </label>
-                                        </div>
-                                    @endforeach
+                                            </option>
+                                        @endforeach
+                                    </select>
                                 </div>
                                 <div class="form-group">
                                     <label class="form-label">Mô Tả</label>
@@ -45,7 +43,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label class="form-label w-100">Hình ảnh</label>
-                                    <input type="file" name="image" accept="img/*">
+                                    <input type="file" name="image" accept="img/gallery/*">
                                     <small class="form-text text-muted">Chọn hình ảnh cho sản phẩm của bạn.</small>
                                 </div>
                                 <button type="submit" class="btn btn-primary">Tạo Mới</button>

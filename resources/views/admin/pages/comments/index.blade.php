@@ -25,39 +25,64 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>username</td>
-                                    <td>day la binh luan</td>
-                                    <td>
-                                        <a href="./products/1/">ahihih day la ten san pham</a>
-                                    </td>
-                                    </td>
-                                    <td>
-                                        <i class="fa fa-star" aria-hidden="true" style="color: yellowgreen"></i>
-                                        <i class="fa fa-star" aria-hidden="true" style="color: yellowgreen"></i>
-                                        <i class="fa fa-star" aria-hidden="true" style="color: yellowgreen"></i>
-                                        <i class="fa fa-star" aria-hidden="true" style="color: yellowgreen"></i>
-                                        <i class="fa fa-star" aria-hidden="true" style="color: yellowgreen"></i>
-                                    </td>
-                                    <td>
-                                        20/12/2001
-                                    </td>
-                                    <td class="table-action">
-                                        <div class="d-flex align-items-center">
-                                            <form class="mb-0" action="{{ asset('/be-admin/comments/1') }}"
-                                                method="POST">
-                                                @method('DELETE')
-                                                @csrf
-                                                <button class="btn" type="submit"><i class="align-middle"
-                                                data-feather="trash"></i></button>
-                                            </form>
-                                        </div>
-                                    </td>
-                                </tr>
+                                @foreach ($comments as $comment)
+                                    <tr>
+                                        <td>{{ $comment->comment_id }}</td>
+                                        <td>{{ $comment->user->user_username }}</td>
+                                        <td>{{ $comment->comment_content }}</td>
+                                        <td>
+                                            <a
+                                                href="{{ asset('products/' . $comment->product->product_id) }}">{{ $comment->product->product_name }}</a>
+                                        </td>
+                                        </td>
+                                        <td>
+                                            @for ($i = 0; $i < $comment->comment_rating; $i++)
+                                                <i class="fa fa-star" aria-hidden="true" style="color: yellowgreen"></i>
+                                            @endfor
+                                            @for ($i = 0; $i < 5 - $comment->comment_rating; $i++)
+                                                <i class="fa fa-star" aria-hidden="true" style="color: black"></i>
+                                            @endfor
+
+                                        </td>
+                                        <td>
+                                            {{ $comment->created_at }}
+                                        </td>
+                                        <td class="table-action">
+                                            <div class="d-flex align-items-center">
+                                                <form class="mb-0"
+                                                    action="{{ asset('/be-admin/comments/' . $comment->comment_id) }}"
+                                                    method="POST">
+                                                    @method('DELETE')
+                                                    @csrf
+                                                    <button class="btn" type="submit"><i class="align-middle"
+                                                            data-feather="trash"></i></button>
+                                                </form>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
+                </div>
+                <div class="col-12 d-flex justify-content-center">
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination justify-content-end">
+                            @php
+                                $page = request()->query('page');
+                                if (!$page) {
+                                    $page = 1;
+                                }
+                            @endphp
+                            @for ($i = 0; $i < $countAllComment / $perPage; $i++)
+                                <li class="page-item {{ $page == $i + 1 ? 'active' : '' }}">
+                                    <a class="page-link" href="{{ request()->fullUrlWithQuery(['page' => $i + 1]) }}">
+                                        {{ $i + 1 }}
+                                    </a>
+                                </li>
+                            @endfor
+                        </ul>
+                    </nav>
                 </div>
             </div>
         </div>

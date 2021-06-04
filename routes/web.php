@@ -14,8 +14,8 @@ use Illuminate\Support\Facades\Route;
 */
 //Auth::routes();
 Route::get('/', 'HomeController@index');
-
 Route::resource('products','ProductsController')->only(['index', 'show']);
+Route::resource('cart', 'CartController')->only(['index', 'store']);
 
 
 // middleware for authenticator
@@ -27,6 +27,8 @@ Route::middleware(['auth-permission'])->group(function () {
 });
 
 Route::get('logout', 'AuthController@logout');
+Route::get('valid-email/{username}/{email}', 'AuthController@email_valid');
+
 
 // request admin with middleware
 Route::middleware(['user-permission'])->group(function () {

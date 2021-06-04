@@ -40,22 +40,19 @@ class AdminProductsController extends Controller
 
     public function create()
     {
-        $categories = Category::all();
-        return view('admin.pages.products.create', [
-            'categories' => $categories,
-        ]);
+        return view('admin.pages.products.create');
     }
 
     public function store(Request $request)
     {
         $name = request("name");
-        $categories = request("categories");
+        $categories = request("category");
         $description = request("description");
         $price = request("price");
         $available = request("available");
         $feature = request("feature");
         $image = $request->file('image');
-        $image && $image->move('assets/images', $image->getClientOriginalName());
+        $image && $image->move('assets/img/gallery', $image->getClientOriginalName());
 
         $product = new Product;
         $product->product_name = $name;
@@ -63,17 +60,11 @@ class AdminProductsController extends Controller
         $product->product_price = $price;
         $product->product_available = $available;
         $product->product_feature = $feature;
-        $product->product_image = $image && $image->getClientOriginalName();
+        $product->category_id = $categories;
+        $image && $product->product_image = $image->getClientOriginalName();
         $product->save();
         $product = $product->fresh();
 
-        if ($categories)
-            for ($i = 0; $i < count($categories); $i++) {
-                $categorizable = new Product();
-                $categorizable->category_id = $categories[$i];
-                $categorizable->product_id = $product->product_id;
-                $categorizable->save();
-            }
 
         return redirect("/be-admin/products")
             ->with('alert', "Tạo sản phẩm thành công!");
@@ -87,42 +78,34 @@ class AdminProductsController extends Controller
     public function edit($id)
     {
         $product = Product::where("product_id", $id)->get()[0];
-        $categories = Category::all();
         return view('admin.pages.products.edit', [
             'product' => $product,
-            'categories' => $categories
         ]);
     }
 
     public function update(Request $request, $id)
     {
         $name = request("name");
-        $categories = request("categories");
+        $categories = request("category");
         $description = request("description");
         $price = request("price");
         $available = request("available");
         $feature = request("feature");
         $image = $request->file('image');
-        $image && $image->move('assets/images', $image->getClientOriginalName());
+        $image && $image->move('assets/img/gallery', $image->getClientOriginalName());
 
         $product = Product::find($id);
         $name && $product->product_name = $name;
         $description && $product->product_description = $description;
         $price && $product->product_price = $price;
         $feature && $product->product_feature = $feature;
+        $categories && $product->category_id = $categories;
         $available && $product->product_available = $available;
         $image && $product->product_image =  $image->getClientOriginalName();
         $product->save();
 
         Product::where("product_id", $id)->delete();
         // error_log(json_encode($categories));
-        if ($categories)
-            for ($i = 0; $i < count($categories); $i++) {
-                $categorizable = new Product();
-                $categorizable->category_id = $categories[$i];
-                $categorizable->product_id = $product->product_id;
-                $categorizable->save();
-            }
         return redirect("/be-admin/products/" . $id . "/edit")
             ->with("alert", "Cập nhật thành công.");
     }
