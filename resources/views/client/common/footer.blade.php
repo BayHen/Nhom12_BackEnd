@@ -9,7 +9,7 @@
                                 <div class="single-footer-caption mb-30">
 
                                     <div class="footer-logo mb-35">
-                                        <a href="index.html"><img src="assets/img/logo/logo2_footer.png" alt=""></a>
+                                        <a href="index.html"><img src="{{asset('assets/img/logo/logo2_footer.png')}}" alt=""></a>
                                     </div>
                                     <div class="footer-tittle">
                                         <div class="footer-pera">
@@ -18,7 +18,7 @@
                                     </div>
 
                                     <div class="footer-social">
-                                        <a href="#"><i class="fab fa-twitter"></i></a>
+                                        <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
                                         <a href="https://bit.ly/sai4ull"><i class="fab fa-facebook-f"></i></a>
                                         <a href="#"><i class="fab fa-pinterest-p"></i></a>
                                     </div>

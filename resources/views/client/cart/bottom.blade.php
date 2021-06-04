@@ -6,7 +6,7 @@
                     Vui lòng đăng nhập để mua sản phẩm này.
                 </h2>
                 <div style="margin-top: 10px">
-                    <a class="btn btn-primary" href="{{ asset('/sign-in') }}" role="button">
+                    <a class="btn btn-primary" href="{{ asset('/log-in') }}" role="button">
                         Đăng Nhập
                     </a>
                 </div>
@@ -21,19 +21,17 @@
     @endphp
     <div class="col-md-6 col-sm-12 col-xs-12 smt-40 xmt-40">
         <div class="htc__cart__total">
-            <h6>Tổng Giỏ Hàng</h6>
+            <h2>Tổng Giỏ Hàng</h2>
             <div class="cart__desk__list">
                 <ul class="cart__desc">
-                    <li>Tổng</li>
                     <li>Phí Giao Hàng</li>
                 </ul>
                 <ul class="cart__price">
-                    <li>{{ number_format($totalPrice) }} VNĐ</li>
                     <li>Miễn Phí</li>
                 </ul>
             </div>
             <div class="cart__total">
-                <span>Tổng Đơn Đặt Hàng</span>
+                <span>Tổng Đơn Đặt Hàng: </span>
                 <span>{{ number_format($totalPrice) }} VNĐ</span>
             </div>
             <ul class="payment__btn">
@@ -41,13 +39,13 @@
                     <li class="active">
                         <form method="POST">
                             @csrf
-                            <button type="submit" style="border: 0; width: 100%;">
-                                <a>Mua Hàng Ngay</a>
+                            <button type="submit">
+                                <a class="btn">Mua Hàng Ngay</a>
                             </button>
                         </form>
                     </li>
                 @endif
-                <li><a href="{{ asset('products') }}">Tiếp tục mua sắm</a></li>
+                <li><a href="{{ asset('products') }}" class="btn">Tiếp tục mua sắm</a></li>
             </ul>
         </div>
     </div>

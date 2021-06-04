@@ -18,7 +18,8 @@ class CreateUsersTable extends Migration
             $table->string('user_email');
             $table->string('user_username');
             $table->string('user_password');
-            $table->integer('user_permission');
+            $table->integer('user_permission')->default(1);
+            $table->integer('user_email_valid')->default(0);
             $table->timestamps();
         });
     }

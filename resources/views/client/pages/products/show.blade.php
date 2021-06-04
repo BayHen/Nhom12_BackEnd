@@ -1,5 +1,4 @@
 @extends('layouts.client', ['title' => $product->product_name ])
-
 @section('content')
 @include('client.products.details.index')
 <section class="product_description_area">
@@ -17,152 +16,76 @@
         </ul>
         <div class="tab-content" id="myTabContent">
             <div class="tab-pane fade" id="home" role="tabpanel" aria-labelledby="home-tab">
-                <p class="pro__info">{{ substr($product->product_description, 0, 150) }}...</p>
+                <p class="pro__info">{{ $product->product_description }}</p>
             </div>
             <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
                 <div class="row">
                     <div class="col-lg-6">
+                        @if (count($comments) == 0)
+                        <h2 class="text-center" style="font-size: 1.5em">
+                            Chưa có bình luận nào cho sản phẩm này.
+                        </h2>
+                        @endif
+                        @foreach ($comments as $comment)
+                        @if ($comment->comment_rating == -1)
                         <div class="comment_list">
                             <div class="review_item">
                                 <div class="media">
                                     <div class="d-flex">
-                                        <img src="assets/img/gallery/review-1.png" alt="" />
+                                        <img src="{{asset('assets/img/gallery/review-1.png')}}" alt="" />
                                     </div>
                                     <div class="media-body">
-                                        <h4>Blake Ruiz</h4>
-                                        <h5>12th Feb, 2017 at 05:56 pm</h5>
-                                        <a class="reply_btn" href="#">Reply</a>
+                                        <h4><a href="#">{{ $comment->user->user_username }}</a></h4>
+                                        <p>{{ $comment->created_at }}</p>
+                                        @include('client.products.details.rating', ['noRating' => true])
                                     </div>
                                 </div>
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                                </p>
-                            </div>
-                            <div class="review_item reply">
-                                <div class="media">
-                                    <div class="d-flex">
-                                        <img src="assets/img/gallery/review-2.png" alt="" />
-                                    </div>
-                                    <div class="media-body">
-                                        <h4>Blake Ruiz</h4>
-                                        <h5>12th Feb, 2017 at 05:56 pm</h5>
-                                        <a class="reply_btn" href="#">Reply</a>
-                                    </div>
-                                </div>
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                                </p>
-                            </div>
-                            <div class="review_item">
-                                <div class="media">
-                                    <div class="d-flex">
-                                        <img src="assets/img/gallery/review-3.png" alt="" />
-                                    </div>
-                                    <div class="media-body">
-                                        <h4>Blake Ruiz</h4>
-                                        <h5>12th Feb, 2017 at 05:56 pm</h5>
-                                        <a class="reply_btn" href="#">Reply</a>
-                                    </div>
-                                </div>
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                                </p>
+                                <p>{{ $comment->comment_content }}</p>
                             </div>
                         </div>
+                        @endif
+                        @endforeach
                     </div>
                     <div class="col-lg-6">
+                        @if (!session('.config_user'))
+                        <div style="display: flex; flex-direction: column; align-items: center">
+                            <h2 class="text-center" style="font-size: 1.5em">
+                                Vui lòng đăng nhập để bình luận sản phẩm.
+                            </h2>
+                            <div style="margin-top: 10px">
+                                <a class="btn btn-primary" href="{{ asset('/log-in') }}" role="button">
+                                    Đăng Nhập
+                                </a>
+                            </div>
+                        </div>
+                        @else
                         <div class="review_box">
                             <h4>Post a comment</h4>
-                            <form class="row contact_form" action="contact_process.php" method="post" id="contactForm" novalidate="novalidate">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" id="name" name="name" placeholder="Your Full name" />
-                                    </div>
+                            <form action="{{ asset('be-admin/comments') }}" method="post">
+                                @csrf
+                                <div class="form-group">
+                                    <label for="" style="font-size: 18px">Bình Luận</label>
+                                    <input name="product" type="text" value="{{ $product->product_id }}" style="display: none">
+                                    <textarea name="content" class="form-control" rows="3" placeholder="Nhập chi tiết đánh giá của bạn về sản phẩm..." required></textarea>
                                 </div>
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <input type="email" class="form-control" id="email" name="email" placeholder="Email Address" />
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" id="number" name="number" placeholder="Phone Number" />
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <textarea class="form-control" name="message" id="message" rows="1" placeholder="Message"></textarea>
-                                    </div>
-                                </div>
-                                <div class="col-md-12 text-right">
-                                    <button type="submit" value="submit" class="btn">
-                                        Submit Now
-                                    </button>
-                                </div>
+                                <button type="submit" class="btn btn-primary">Gửi bình luận</button>
                             </form>
                         </div>
+                        @endif
                     </div>
                 </div>
             </div>
             <div class="tab-pane fade show active" id="review" role="tabpanel" aria-labelledby="review-tab">
                 <div class="row">
                     <div class="col-lg-6">
-                        <div class="row total_rate">
-                            <div class="col-6">
-                                <div class="box_total">
-                                    <h5>Overall</h5>
-                                    <h4>4.0</h4>
-                                    <h6>(03 Reviews)</h6>
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="rating_list">
-                                    <h3>Based on 3 Reviews</h3>
-                                    <ul class="list">
-                                        <li>
-                                            <a href="#">5 Star
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i> 01</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">4 Star
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i> 01</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">3 Star
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i> 01</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">2 Star
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i> 01</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">1 Star
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i> 01</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
+
+                        @if (count($comments) == 0)
+                        <h2 class="text-center" style="font-size: 1.5em">
+                            Chưa có đánh giá nào cho sản phẩm này.
+                        </h2>
+                        @endif
+                        @foreach ($comments as $comment)
+                        @if ($comment->comment_rating != -1)
                         <div class="review_list">
                             <div class="review_item">
                                 <div class="media">
@@ -170,120 +93,85 @@
                                         <img src="assets/img/gallery/review-1.png" alt="" />
                                     </div>
                                     <div class="media-body">
-                                        <h4>Blake Ruiz</h4>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
+                                        <p>{{ $comment->created_at }}</p>
+                                        @include('client.products.details.rating', ['rating' =>
+                                        $comment->comment_rating ])
+                                        <h4><a href="#">{{ $comment->user->user_username }}</a></h4>
                                     </div>
                                 </div>
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                                </p>
-                            </div>
-                            <div class="review_item">
-                                <div class="media">
-                                    <div class="d-flex">
-                                        <img src="assets/img/gallery/review-2.png" alt="" />
-                                    </div>
-                                    <div class="media-body">
-                                        <h4>Blake Ruiz</h4>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                    </div>
-                                </div>
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                                </p>
-                            </div>
-                            <div class="review_item">
-                                <div class="media">
-                                    <div class="d-flex">
-                                        <img src="assets/img/gallery/review-3.png" alt="" />
-                                    </div>
-                                    <div class="media-body">
-                                        <h4>Blake Ruiz</h4>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                    </div>
-                                </div>
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                                </p>
+                                <p>{{ $comment->comment_content }}</p>
                             </div>
                         </div>
+                        @endif
+                        @endforeach
                     </div>
                     <div class="col-lg-6">
                         <div class="review_box">
                             <h4>Add a Review</h4>
                             <p>Your Rating:</p>
-                            <ul class="list">
-                                <li>
-                                    <a href="#">
-                                        <i class="fa fa-star"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="fa fa-star"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="fa fa-star"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="fa fa-star"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="fa fa-star"></i>
-                                    </a>
-                                </li>
-                            </ul>
-                            <p>Outstanding</p>
-                            <form class="row contact_form" action="contact_process.php" method="post" novalidate="novalidate">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" name="name" placeholder="Your Full name" />
-                                    </div>
+                            @if (!session('.config_user'))
+                            <div style="display: flex; flex-direction: column; align-items: center">
+                                <h2 class="text-center" style="font-size: 1.5em">
+                                    Vui lòng đăng nhập để đánh giá sản phẩm.
+                                </h2>
+                                <div style="margin-top: 10px">
+                                    <a class="btn btn-primary" href="{{ asset('/log-in') }}" role="button">Đăng Nhập</a>
                                 </div>
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <input type="email" class="form-control" name="email" placeholder="Email Address" />
-                                    </div>
+                            </div>
+                            @elseif (count($product->orders) === 0)
+                            <div style="display: flex; flex-direction: column; align-items: center">
+                                <h2 class="text-center" style="font-size: 1.5em">
+                                    Bạn phải mua sản phẩm để được đánh giá.
+                                </h2>
+                                <div style="margin-top: 10px">
+                                    <a href="{{ asset('cart?increase=1&product=' . $product->product_id) }}">
+                                        <button class="fr__btn" style="border: 0">Thêm Vào Giỏ Hàng Ngay</button>
+                                    </a>
                                 </div>
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" name="number" placeholder="Phone Number" />
-                                    </div>
+                            </div>
+                            @elseif ($isRatingOnce)
+                            <div style="display: flex; flex-direction: column; align-items: center">
+                                <h2 class="text-center" style="font-size: 1.5em">
+                                    Bạn chỉ được đánh giá sản phẩm một lần. Bạn không thể đánh giá.
+                                </h2>
+                            </div>
+                            @else
+                            <form action="{{ asset('be-admin/comments') }}" method="post">
+                                @csrf
+                                <div class="form-group">
+                                    <label for="" style="font-size: 18px">Đánh Giá</label>
+                                    <ul class="rating">
+                                        <li class="icon-select"><i class="icon-star icons"></i></li>
+                                        <li class="icon-select"><i class="icon-star icons"></i></li>
+                                        <li class="icon-select"><i class="icon-star icons"></i></li>
+                                        <li class="icon-select"><i class="icon-star icons"></i></li>
+                                        <li class="icon-select"><i class="icon-star icons"></i></li>
+                                        <input name="rating" id="ratingInput" type="text" value="5" style="display: none">
+                                    </ul>
+                                    <input name="product" type="text" value="{{ $product->product_id }}" style="display: none">
+                                    <textarea name="content" class="form-control" rows="3" placeholder="Nhập chi tiết đánh giá của bạn về sản phẩm..." required></textarea>
                                 </div>
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <textarea class="form-control" name="message" rows="1" placeholder="Review"></textarea>
-                                    </div>
-                                </div>
-                                <div class="col-md-12 text-right">
-                                    <button type="submit" value="submit" class="btn">
-                                        Submit Now
-                                    </button>
-                                </div>
+                                <button type="submit" class="btn btn-primary">Gửi đánh giá</button>
                             </form>
+                            @endif
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <script>
+        const iconSelect = document.querySelectorAll(".icon-select");
+        const ratingInput = document.getElementById("ratingInput");
+        for (let index = 0; index < iconSelect.length; index++) {
+            iconSelect[index].addEventListener("click", () => {
+                for (let jIndex = 0; jIndex <= index; jIndex++)
+                    iconSelect[jIndex].classList.remove("old");
+                for (let jIndex = index + 1; jIndex < iconSelect.length; jIndex++)
+                    iconSelect[jIndex].classList.add("old");
+                ratingInput.setAttribute("value", index + 1);
+            })
+        }
+    </script>
 </section>
 @endsection

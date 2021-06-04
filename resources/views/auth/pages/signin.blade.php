@@ -28,7 +28,7 @@
                             </div>
                         </div>
                         <div class="login-footer">
-                            <p>Don’t have an account? <a href="{{asset('/signup')}}">Sign Up</a> here</p>
+                            <p>Don’t have an account? <a href="{{asset('/sign-up')}}">Sign Up</a> here</p>
                             <button type="submit" class="submit-btn3">Login</button>
                         </div>
                     </form>

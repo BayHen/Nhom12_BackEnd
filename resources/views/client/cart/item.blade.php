@@ -1,6 +1,6 @@
 <tr>
     <td class="product-thumbnail"><a href="#">
-            <img src="{{ asset('assets/images/gallery/' . $product->product_image) }}" alt="product img" /></a></td>
+            <img src="{{ asset('assets/img/gallery/' . $product->product_image) }}" alt="product img" /></a></td>
     <td class="product-name"><a href="{{ asset('products/' . $product->product_id) }}">
             {{ $product->product_name }}</a>
     </td>
@@ -18,5 +18,5 @@
         {{ number_format($product->product_price * $product->product_quantity) }} VNĐ
     </td>
     <td class="product-remove"><a href="{{ asset('cart?remove=true&product=' . $product->product_id) }}">
-            <i class="icon-trash icons"></i></a></td>
+            <i class="bi bi-trash"></i></a></td>
 </tr>

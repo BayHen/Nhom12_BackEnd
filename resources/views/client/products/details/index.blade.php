@@ -48,8 +48,7 @@
                     <p class="pro__info">{{ substr($product->product_description, 0, 150) }}...</p>
                     <div class="card_area">
                         <div class="add_to_cart">
-                            <a href="#" class="btn">add to cart</a>
-                            <a href="#" class="like_us"> <i class="ti-heart"></i> </a>
+                            <a href="{{ asset("cart?increase=1&product=". $product->product_id) }}" class="btn">add to cart</a>
                         </div>
                         <div class="social_icon">
                             <a href="#" class="fb"><i class="ti-facebook"></i></a>
