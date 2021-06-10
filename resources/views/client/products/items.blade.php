@@ -2,7 +2,7 @@
 
     <div class="single-new-arrival mb-50 text-center">
         <div class="popular-img">
-            <img src="{{asset('assets/img/gallery/'.$product->product_image)}}" style="height: 100%;" alt="">
+            <img src="{{asset('assets/img/gallery/'.$product->product_image)}}" style="width: 330px; height: 220px;" alt="">
         </div>
         <div class="popular-caption">
             <h3><a href="{{ asset('products/'.$product->product_id) }}">{{ $product->product_name }}</a></h3>

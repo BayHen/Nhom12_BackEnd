@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'HomeController@index');
 Route::resource('products','ProductsController')->only(['index', 'show']);
 Route::resource('cart', 'CartController')->only(['index', 'store']);
+Route::get('user', 'UserController@index');
 
 
 // middleware for authenticator

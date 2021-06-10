@@ -14,7 +14,7 @@
                                 <p data-animation="fadeInUp" data-delay=".6s">Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla.</p>
 
                                 <div class="hero__btn" data-animation="fadeInUp" data-delay=".7s">
-                                    <a href="industries.html" class="btn hero-btn">Discover More</a>
+                                    <a href="{{asset('/products')}}" class="btn hero-btn">Discover More</a>
                                 </div>
                             </div>
                         </div>
@@ -30,31 +30,15 @@
             'title' => 'POPULAR PRODUCTS',
             'slogan' => 'Khám phá những sản phẩm của chúng tôi.' ])
             <div class="row">
-                <div class="col-xl-12">
-                    <div class="properties__button text-center">
-
-                        <nav>
-                            <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                                @foreach ($categories as $category)
-                                <a class="nav-item nav-link " id="nav-Sofa-tab" data-toggle="tab" href="nav-{{asset( $category->category_id )}}" role="tab" aria-controls="nav-Sofa" aria-selected="true">{{ $category->category_name }}</a>
-                                @endforeach
-                            </div>
-                        </nav>
-
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-
                 <div class="tab-content" id="nav-tabContent">
-                    <div class="tab-pane fade show active" id="nav-Sofa" role="tabpanel" aria-labelledby="nav-Sofa-tab">
+                    <div class="tab-pane fade show active" id="$category_id" role="tabpanel" aria-labelledby="nav-Sofa-tab">
                         <div class="row">
                             @foreach ($productsNew as $product)
                             <div class="col-xl-4 col-lg-6 col-md-6 ">
 
                                 <div class="single-new-arrival mb-50 text-center">
                                     <div class="popular-img">
-                                        <img src="{{asset('assets/img/gallery/'.$product->product_image)}}" style="height: 100%;" alt="">
+                                        <img src="{{asset('assets/img/gallery/'.$product->product_image)}}" style="width: 330px; height: 220px;" alt="">
                                     </div>
                                     <div class="popular-caption">
                                         <h3><a href="{{ asset('products/'.$product->product_id) }}">{{ $product->product_name }}</a></h3>
@@ -112,7 +96,7 @@
 
                     <div class="single-new-arrival mb-50 text-center">
                         <div class="popular-img">
-                            <img src="{{asset('assets/img/gallery/'.$product->product_image)}}" style="height: 100%;" alt="">
+                            <img src="{{asset('assets/img/gallery/'.$product->product_image)}}" style="width: 330px; height: 220px;" alt="">
                         </div>
                         <div class="popular-caption">
                             <h3><a href="{{ asset('products/'.$product->product_id) }}">{{ $product->product_name }}</a></h3>
@@ -124,7 +108,7 @@
             </div>
             <div class="row justify-content-center">
                 <div class="room-btn">
-                    <a href="product.html" class="border-btn">Discover More</a>
+                    <a href="{{asset('/products')}}" class="border-btn">Discover More</a>
                 </div>
             </div>
         </div>

@@ -57,16 +57,25 @@ class ProductsController extends Controller
     public function show($id)
     {
         $product = Product::findOrFail($id);
-        $comments = Comment::where("product_id", $id)->get();
+        $comments = Comment::where("product_id", $id)->orderBy('comment_id', 'DESC')->get();
+
+        $user = session(".config_user");
+        $isRatingOnce = false;
+        if ($user) {
+            $isRatingOnce = Comment::where([
+                ['product_id', '=', $id],
+                ['user_id', '=', $user->user_id],
+                ["comment_rating", ">", 0]
+            ])->get();
+            $isRatingOnce = count($isRatingOnce) > 0;
+        }
+
         $productsRelated = Product::where("category_id", $product->category_id)->get()->take(4);
         return view('client.pages.products.show', [
             'product' => $product,
             'comments' => $comments,
-            'productsRelated' => $productsRelated
+            'productsRelated' => $productsRelated,
+            'isRatingOnce' => $isRatingOnce
         ]);
-    }
-
-    
-
-    
+    }   
 }

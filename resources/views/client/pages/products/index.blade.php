@@ -29,17 +29,7 @@ $title = $nameCategory;
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="count-job mb-35">
-                            <span>39, 782 Product found</span>
-
-                            <div class="select-cat">
-                                <span>Sort by</span>
-                                <select name="select">
-                                    @foreach ($categories as $category)
-                                    <option value="{{ asset('/products?category=' . $category->category_id) }}">{{ $category->category_name }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-
+                            @include('client.products.main.gridtop')
                         </div>
                     </div>
                 </div>
@@ -47,7 +37,7 @@ $title = $nameCategory;
                 <div class="new-arrival new-arrival3">
                     <div class="row">
                         @foreach ($products as $product)
-                            @include('client.products.items', ['product' => $product])
+                        @include('client.products.items', ['product' => $product])
                         @endforeach
                     </div>
                 </div>
