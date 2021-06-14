@@ -31,12 +31,12 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th class="product-thumbnail">Sản Phẩm</th>
-                            <th class="product-name">Tên Sản Phẩm</th>
-                            <th class="product-price">Giá</th>
-                            <th class="product-quantity">Số Lượng</th>
-                            <th class="product-subtotal">Tổng Cộng</th>
-                            <th class="product-remove">Xóa</th>
+                            <th style="border: solid;" class="product-thumbnail">Sản Phẩm</th>
+                            <th style="border: solid;" class="product-name">Tên Sản Phẩm</th>
+                            <th style="border: solid;" class="product-price">Giá</th>
+                            <th style="border: solid;" class="product-quantity">Số Lượng</th>
+                            <th style="border: solid;" class="product-subtotal">Tổng Cộng</th>
+                            <th style="border: solid;" class="product-remove">Xóa</th>
                         </tr>
                     </thead>
                     <tbody>
