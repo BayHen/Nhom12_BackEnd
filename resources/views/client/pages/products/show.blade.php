@@ -174,4 +174,20 @@
         }
     </script>
 </section>
+<section class="new-arrival new-arrival2">
+    <div class="container">
+        @include('client.home.titlecategory',[ 'title' => 'Sản Phẩm Liên Quan', 'slogan' => 'Bạn muốn tìm những thứ phù
+        hợp hơn? Lựa chọn ngay.'])
+
+        <div class="row">
+            @foreach ($productsRelated as $product)
+            <div class="col-xl-4 col-lg-6 col-md-6 ">
+
+                @include('client.products.items', ['product' => $product])
+
+            </div>
+            @endforeach
+        </div>
+    </div>
+</section>
 @endsection

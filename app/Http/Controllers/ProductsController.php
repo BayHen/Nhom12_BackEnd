@@ -70,7 +70,7 @@ class ProductsController extends Controller
             $isRatingOnce = count($isRatingOnce) > 0;
         }
 
-        $productsRelated = Product::where("category_id", $product->category_id)->get()->take(4);
+        $productsRelated = Product::where("category_id", $product->category_id)->get()->take(3);
         return view('client.pages.products.show', [
             'product' => $product,
             'comments' => $comments,
