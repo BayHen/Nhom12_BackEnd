@@ -40,7 +40,7 @@ class ProductsController extends Controller
         }
 
         $perPage = request()->query("perPage");
-        if (!$perPage) $perPage = 8;
+        if (!$perPage) $perPage = 6;
         $countAllProduct = count($products);
         $products = $this->paginate($products, $perPage);
 

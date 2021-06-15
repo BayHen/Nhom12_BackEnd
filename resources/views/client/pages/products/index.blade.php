@@ -25,7 +25,6 @@ $title = $nameCategory;
             @include('client.products.main.left')
 
             <div class="col-xl-9 col-lg-9 col-md-8 ">
-
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="count-job mb-35">
@@ -33,7 +32,6 @@ $title = $nameCategory;
                         </div>
                     </div>
                 </div>
-
                 <div class="new-arrival new-arrival3">
                     <div class="row">
                         @foreach ($products as $product)
@@ -41,6 +39,7 @@ $title = $nameCategory;
                         @endforeach
                     </div>
                 </div>
+                @include('client.products.main.pagination')
             </div>
         </div>
     </div>

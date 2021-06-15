@@ -32,7 +32,7 @@
                             <div class="review_item">
                                 <div class="media">
                                     <div class="d-flex">
-                                        <img src="{{asset('assets/img/gallery/review-1.png')}}" alt="" />
+                                        <img style="height: 100px; width: 100px;" src="{{asset('assets/img/gallery/OIP.PNG')}}" alt="" />
                                     </div>
                                     <div class="media-body">
                                         <h4><a href="#">{{ $comment->user->user_username }}</a></h4>
@@ -90,7 +90,7 @@
                             <div class="review_item">
                                 <div class="media">
                                     <div class="d-flex">
-                                        <img src="assets/img/gallery/review-1.png" alt="" />
+                                        <img style="height: 100px; width: 100px;" src="{{asset('assets/img/gallery/OIP.PNG')}}" alt="" />
                                     </div>
                                     <div class="media-body">
                                         <p>{{ $comment->created_at }}</p>
@@ -99,7 +99,7 @@
                                         <h4><a href="#">{{ $comment->user->user_username }}</a></h4>
                                     </div>
                                 </div>
-                                <p>{{ $comment->comment_content }}</p>
+                                <p style="padding-left: 114px; margin-top: -25px;">{{ $comment->comment_content }}</p>
                             </div>
                         </div>
                         @endif
@@ -125,7 +125,7 @@
                                 </h2>
                                 <div style="margin-top: 10px">
                                     <a href="{{ asset('cart?increase=1&product=' . $product->product_id) }}">
-                                        <button class="fr__btn" style="border: 0">Thêm Vào Giỏ Hàng Ngay</button>
+                                        <button class=" btn fr__btn" style="border: 0">Thêm Vào Giỏ Hàng Ngay</button>
                                     </a>
                                 </div>
                             </div>
@@ -141,11 +141,11 @@
                                 <div class="form-group">
                                     <label for="" style="font-size: 18px">Đánh Giá</label>
                                     <ul class="rating">
-                                        <li class="icon-select"><i class="icon-star icons"></i></li>
-                                        <li class="icon-select"><i class="icon-star icons"></i></li>
-                                        <li class="icon-select"><i class="icon-star icons"></i></li>
-                                        <li class="icon-select"><i class="icon-star icons"></i></li>
-                                        <li class="icon-select"><i class="icon-star icons"></i></li>
+                                        <li style="cursor: pointer;" class="icon-select fab"><i class="fas fa-star "></i></li>
+                                        <li style="cursor: pointer;" class="icon-select fab"><i class="fas fa-star "></i></li>
+                                        <li style="cursor: pointer;" class="icon-select fab"><i class="fas fa-star "></i></li>
+                                        <li style="cursor: pointer;" class="icon-select fab"><i class="fas fa-star "></i></li>
+                                        <li style="cursor: pointer;" class="icon-select fab"><i class="fas fa-star "></i></li>
                                         <input name="rating" id="ratingInput" type="text" value="5" style="display: none">
                                     </ul>
                                     <input name="product" type="text" value="{{ $product->product_id }}" style="display: none">

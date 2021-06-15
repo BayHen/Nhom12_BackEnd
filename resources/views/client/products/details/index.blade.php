@@ -34,6 +34,21 @@
             <div class="col-lg-5 offset-lg-1">
                 <div class="s_product_text">
                     <h3>{{ $product->product_name }}</h3>
+                    @php
+                    $sumRating = 0;
+                    $totalComments = 0;
+                    foreach ($comments as $key => $value) {
+                    if (isset($value->comment_rating) && $value->comment_rating !== -1) {
+                    $sumRating += $value->comment_rating;
+                    $totalComments += 1;
+                    }
+                    }
+                    if ($totalComments == 0) {
+                    $totalComments = 1;
+                    }
+                    $averageRating = $sumRating / $totalComments;
+                    @endphp
+                    @include('client.products.details.rating', ['rating' => $averageRating])
                     <h2>{{ number_format($product->product_price) }} VNĐ</h2>
                     <ul class="list">
 

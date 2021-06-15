@@ -43,7 +43,7 @@
                                 </li>
                                 <li style="padding-left: 10px;">
                                     @if (session('.config_user'))
-                                    <div >
+                                    <div>
                                         <a href="{{ asset('logout') }}" title="Đăng Xuất">
                                             <!-- <i class="icon-logout icons" style="margin-right: 10px"></i> -->
                                             <i class="fas fa-sign-out-alt" style="color: black;"></i>
@@ -53,17 +53,20 @@
                                 </li>
                                 <li style="padding-left: 10px;">
                                     <div class="card-stor">
+                                        <a href="{{ asset('cart') }}">
                                         <img src="{{asset('assets/img/icon/card.svg')}}" alt="">
-                                        <span class="htc__qua">{{ count($cartProducts) }}</span></a>
+                                            <span class="htc__qua">{{ count($cartProducts) }}</span></a>
+                                        </a>
+
                                     </div>
                                 </li>
                             </ul>
                         </div>
-                    <div class="col-12">
-                        <div class="mobile_menu d-block d-lg-none"></div>
+                        <div class="col-12">
+                            <div class="mobile_menu d-block d-lg-none"></div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 </header>

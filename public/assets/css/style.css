@@ -130,9 +130,14 @@ body {
     font-family: "Poppins", sans-serif;
     font-weight: normal;
     font-style: normal;
-    font-size: 16px
+    font-size: 20px
 }
-
+.rating li i{
+    color: yellow;
+}
+.rating li.old i{
+    color: black;
+}
 h1,
 h2,
 h3,
@@ -839,7 +844,7 @@ hr {
 }
 
 .mb-35 {
-    margin-bottom: 35px
+    margin-bottom: -68px
 }
 
 .mb-40 {
