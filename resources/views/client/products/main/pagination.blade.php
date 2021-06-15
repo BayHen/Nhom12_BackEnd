@@ -1,5 +1,5 @@
 <!-- Start Pagenation -->
-<div class="row" style="display: flex; justify-content: center;">
+<div class="row" style="display: flex; justify-content: center; margin-top: 10px;">
     <div class="col-xs-12">
         @php
             $page = request()->query('page');
