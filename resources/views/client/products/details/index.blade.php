@@ -8,7 +8,7 @@
                             <h1 data-animation="fadeInUp" data-delay=".4s">Product details</h1>
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                                    <li class="breadcrumb-item"><a href="#">Home</a></li>
                                     <li class="breadcrumb-item"><a href="#">Product details</a></li>
                                 </ol>
                             </nav>
@@ -60,15 +60,10 @@
                         </li>
 
                     </ul>
-                    <p class="pro__info">{{ substr($product->product_description, 0, 150) }}...</p>
+                    <p class="pro__info">{{ substr($product->product_description, 0, 250) }}...</p>
                     <div class="card_area">
                         <div class="add_to_cart">
                             <a href="{{ asset("cart?increase=1&product=". $product->product_id) }}" class="btn">add to cart</a>
-                        </div>
-                        <div class="social_icon">
-                            <a href="#"><i class="fab fa-twitter" aria-hidden="true"></i></a>
-                            <a href="https://bit.ly/sai4ull"><i class="fab fa-facebook-f"></i></a>
-                            <a href="#"><i class="fab fa-pinterest-p"></i></a>
                         </div>
                     </div>
                 </div>

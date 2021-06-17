@@ -9,7 +9,6 @@ use App\Product;
 class ProductsController extends Controller
 {
     public function index(){
-
         $customView = false;
         $products = Product::orderBy("product_id", "DESC")->get();
         $newProducts = Product::all()->take(3);

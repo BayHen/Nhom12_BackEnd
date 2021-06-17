@@ -25,42 +25,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xl-2 col-lg-2 col-md-4 col-sm-4">
-                            <div class="single-footer-caption mb-50">
-                                <div class="footer-tittle">
-                                    <h4>Quick links</h4>
-                                    <ul>
-                                        <li><a href="#">Image Licensin</a></li>
-                                        <li><a href="#">Style Guide</a></li>
-                                        <li><a href="#">Privacy Policy</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-2 col-lg-2 col-md-4 col-sm-4">
-                            <div class="single-footer-caption mb-50">
-                                <div class="footer-tittle">
-                                    <h4>Shop Category</h4>
-                                    <ul>
-                                        <li><a href="#">Image Licensin</a></li>
-                                        <li><a href="#">Style Guide</a></li>
-                                        <li><a href="#">Privacy Policy</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-2 col-lg-2 col-md-4 col-sm-4">
-                            <div class="single-footer-caption mb-50">
-                                <div class="footer-tittle">
-                                    <h4>Pertners</h4>
-                                    <ul>
-                                        <li><a href="#">Image Licensin</a></li>
-                                        <li><a href="#">Style Guide</a></li>
-                                        <li><a href="#">Privacy Policy</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
+                        
                     </div>
                 </div>
             </div>

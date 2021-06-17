@@ -6,7 +6,6 @@ if (!isset($noRating)) {
     $noRating = false;
 }
 @endphp
-
 @if (!$noRating)
     <ul class="rating">
         @for ($i = 0; $i < $rating; $i++)
