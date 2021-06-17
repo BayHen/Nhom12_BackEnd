@@ -29,8 +29,8 @@
                             <ul class="d-flex align-items-center">
                                 <li style="padding-left: 10px;">
 
-                                    <form action="#" class="form-box f-right ">
-                                        <input type="text" name="Search" placeholder="Search products">
+                                    <form action="{{ asset("products") }}" method="GET" class="form-box f-right ">
+                                        <input type="text" name="search" placeholder="Search products">
                                         <div class="search-icon">
                                             <i class="fa fa-search" aria-hidden="true"></i>
                                         </div>
