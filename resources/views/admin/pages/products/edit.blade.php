@@ -19,7 +19,7 @@
                                 <label class="form-label">Loại Sản Phẩm</label>
                                 <select class="form-control" name="category" id="">
                                     @foreach ($categories as $category)
-                                    <option {{ $product->category_id->category == $category->category_id ? 'selected' : '' }} value="{{ $category->category_id }}">
+                                    <option {{ $product->category->category_id == $category->category_id ? 'selected' : '' }} value="{{ $category->category_id }}">
                                         {{ $category->category_name }}
                                     </option>
                                     @endforeach
